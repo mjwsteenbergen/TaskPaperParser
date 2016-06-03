@@ -39,6 +39,13 @@ namespace TaskPaperParser
 						return new IndentState (indented, space + 1);
 					}
 				}
+				case '-':
+				{
+					if (space == 1) {
+						return new TodoState (this);
+					}
+					goto default;
+				}
 				default: {
 					return new TextState(this, c.ToString());
 				}

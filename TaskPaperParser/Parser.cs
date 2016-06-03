@@ -21,14 +21,14 @@ namespace TaskPaperParser
 			}
 
 			if (!(state is DoneState)) {
-				throw new InvalidOperationException ("State was not correct. State was: " + state.GetType ().FullName);
+				return (new DoneState (state)).result;
 			} else {
 				return ((DoneState)state).result;
 			}
 
 		}
 		public static void Main(string[] args) {
-
+			Parser.ParseLine ("Thing:\n");
 		}
 	}
 }

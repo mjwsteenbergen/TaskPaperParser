@@ -9,7 +9,7 @@ namespace TaskPaperParserTest
 		[Test]
 		public void SimpleItemTest ()
 		{
-			TodoItem t = ParseTodo ("\t - Test");
+			TodoItem t = ParseTodo (" - Test");
 			Assert.AreEqual ("Test", t.name);
 		}
 

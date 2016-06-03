@@ -39,8 +39,10 @@
     <Compile Include="Parser.cs" />
     <Compile Include="States\IState.cs" />
     <Compile Include="States\TextState.cs" />
-    <Compile Include="States\ProjectIndicatorState.cs" />
     <Compile Include="States\DoneState.cs" />
+    <Compile Include="States\TodoState.cs" />
+    <Compile Include="States\ProjectState.cs" />
+    <Compile Include="Data\Comment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

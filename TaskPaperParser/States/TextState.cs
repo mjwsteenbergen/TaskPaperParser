@@ -4,7 +4,9 @@ namespace TaskPaperParser
 {
 	public class TextState : IState
 	{
-		IndentState indent;
+		public IndentState indent;
+		public TodoState todoState;
+
 		public string text {
 			get;
 			private set;
@@ -13,24 +15,35 @@ namespace TaskPaperParser
 		public TextState (IndentState indentState)
 		{
 			this.indent = indentState;
-			this.text = "";
 		}
 
-		public TextState (IndentState indentState, string text)
+		public TextState (IndentState indentState, string str)
 		{
+			this.text = str;
 			this.indent = indentState;
-			this.text = text;
 		}
 
+		public TextState (IndentState indent, TodoState todoState)
+		{
+			this.indent = indent;
+			this.todoState = todoState;
+		}
+
+		IState addText (char c)
+		{
+			text += c;
+			return this;
+		}
 
 		public IState readChar (char c)
 		{
 			switch (c) {
 				case ':':
-					return new ProjectIndicatorState (indent, this);
-
+					return new ProjectState (indent, this);
+				case '\n':
+					return new DoneState (this);
 				default:
-					return new TextState(indent, text + c);
+					return this.addText(c);
 			}
 		}
 	}

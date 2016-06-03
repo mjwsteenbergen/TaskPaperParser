@@ -14,9 +14,21 @@ namespace TaskPaperParser
 			return this; //Should do nothing
 		}
 
-		public DoneState(object obj)
+		public DoneState(IState state)
 		{
-			this.result = obj;
+			if(state is TextState) {
+				TextState tstate = state as TextState;
+				if (tstate.todoState != null) {
+					result = new TodoItem (tstate.text, tstate.indent.indented);
+				} else {
+					result = new Comment (tstate.text, tstate.indent.indented);
+				}
+			} else if (state is ProjectState) {
+				ProjectState pstate = state as ProjectState;
+				result = new Project () { name = pstate.text.text , indentLevel = pstate.indent.indented };
+			} else {
+				throw new InvalidProgramException ("Invalid state");
+			}
 		}
 	}
 }
