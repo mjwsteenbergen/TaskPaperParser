@@ -1,2 +1,2 @@
 # TaskPaperParser
-A C# parser for the taskpaper format
+An implementation of the taskpaper format for C# 
