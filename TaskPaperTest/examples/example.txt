@@ -1,0 +1,9 @@
+Example Project:
+ - This is a task
+ - This is a second task with a @tag
+ - @This is another task
+
+NewProject @due(tommorow):
+ - TaskOne
+ - TaskTwo
+ - TaskThree

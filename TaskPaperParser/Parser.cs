@@ -1,35 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using TaskPaperParser.Types;
 
 namespace TaskPaperParser
 {
-	public class Parser
-	{
-		public static object ParsePage() {
-			throw new NotImplementedException ();
-		}
+    public class Parser
+    {
+        public static TaskPaperSolution Parse(string input)
+        {
+            TaskPaperSolution solution = new TaskPaperSolution();
 
-		public static object ParseLine(string line)
-		{
-			return ParseLine (line.ToCharArray ());
-		}
+            List<TPType> taskPaperTypes = new List<TPType>
+            {
+                new Todo(),
+                new Project()
+            };
 
-		public static object ParseLine (char[] line){
-			IState state = new IndentState();
+            var splitInput = input.Replace("\r", "").ToCharArray();
+            int index = 0;
 
-			foreach (char c in line) {
-				state = state.readChar (c);
-			}
+            do
+            {
+                foreach (TPType tpType in taskPaperTypes)
+                {
+                    (bool dibs, int newIndex) = tpType.TryParse(splitInput, index, solution);
+                    if (dibs)
+                    {
+                        index = newIndex;
+                        break;
+                    }
+                }
 
-			if (!(state is DoneState)) {
-				return (new DoneState (state)).result;
-			} else {
-				return ((DoneState)state).result;
-			}
+                index++;
+            } while (index < splitInput.Length);
 
-		}
-		public static void Main(string[] args) {
-			Parser.ParseLine ("Thing:\n");
-		}
-	}
+            return solution;
+        }
+    }
 }
-
