@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TaskPaperParser
 {
     [Serializable]
-    internal class ParseException : Exception
+    public class ParseException : Exception
     {
         public ParseException()
         {
