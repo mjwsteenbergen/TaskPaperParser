@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageReleaseNotes>To see what is new, go to https://github.com/mjwsteenbergen/TaskPaperParser</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/mjwsteenbergen/TaskPaperParser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mjwsteenbergen/TaskPaperParser.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>An implementation of the taskpaper format for C#</Description>
+    <Authors>Martijn Steenbergen</Authors>
+    <Version>1.1.0</Version>
   </PropertyGroup>
-
 </Project>
