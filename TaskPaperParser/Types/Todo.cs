@@ -13,7 +13,6 @@ namespace TaskPaperParser.Types
 
         public List<Tag> Tags { get; set; }
         public string Name { get; set; }
-
         public int Indent { get; set; }
 
         public override (bool, int) TryParse(char[] input, int index, TaskPaperSolution solution)
@@ -79,7 +78,7 @@ namespace TaskPaperParser.Types
                 } while (true);
             }
 
-            return (false, index);
+            return (false, originalIndex);
         }
 
 
