@@ -52,5 +52,21 @@ namespace TaskPaperTest
             Assert.AreEqual("Test2", project.Todos[1].Name);
             Assert.AreEqual("Test3", project.Todos[2].Name);
         }
+
+        [Test]
+        public void TodoIndentTest()
+        {
+            TaskPaperSolution p = Parser.Parse(@"Test:
+ - Test
+     - Test2
+ - Test3");
+            Project project = p.Projects.First();
+            Assert.AreEqual("Test", project.Todos[0].Name);
+            Assert.AreEqual(0, project.Todos[2].Indent);
+            Assert.AreEqual("Test2", project.Todos[1].Name);
+            Assert.AreEqual(1, project.Todos[1].Indent);
+            Assert.AreEqual("Test3", project.Todos[2].Name);
+            Assert.AreEqual(0, project.Todos[2].Indent);
+        }
     }
 }
